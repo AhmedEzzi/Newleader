@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import '../../../../data/auth/models/auth_response_model.dart';
 import '../../repositories/auth_repository.dart';
 
 class SignupUseCase {

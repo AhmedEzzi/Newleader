@@ -1,5 +1,4 @@
 import 'package:leader_company/features/domain/product%20details/entities/product_details.dart';
-import '../../product details/repositories/product_details_repository.dart';
 import '../entities/review.dart';
 import '../repositories/review_repository.dart';
 

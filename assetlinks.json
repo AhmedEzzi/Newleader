@@ -1,0 +1,17 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.leadercompany",
+      "sha256_cert_fingerprints": [
+        "B2:20:EA:DE:08:72:38:F3:B8:B3:9C:46:E2:29:5E:FE:9F:42:E6:F1:78:D7:E4:74:07:86:33:E7:62:B0:A2:A7",
+        "F3:AC:72:FB:BB:5D:3E:32:5C:5C:C6:5B:0E:12:B8:1F:D2:A1:5E:FC:DA:89:1D:E3:76:48:5D:34:CF:7A:20:71",
+        "f3:ac:72:fb:bb:5d:3e:32:5c:5c:c6:5b:0e:12:b8:1f:d2:a1:5e:fc:da:89:1d:e3:76:48:5d:34:cf:7a:20:71",
+        "b0:26:1e:21:4f:f8:04:3f:04:c8:2f:ed:7b:b3:04:a7:52:c9:2f:85:eb:65:dd:c9:eb:81:7e:41:d6:fa:c8:e6"
+      ]
+    }
+  }
+]

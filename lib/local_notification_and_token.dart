@@ -20,11 +20,9 @@ class GlobalMethods {
 
     try {
       String? token = await firebaseMessaging.getToken();
-      if (token != null) {
-        debugPrint('FCM Token: $token');
-        return token;
-      }
-    } catch (error) {
+      debugPrint('FCM Token: $token');
+      return token;
+        } catch (error) {
       // AppFunctions.showsToast(error.toString(), AppColors.red, context);
     }
     return null;

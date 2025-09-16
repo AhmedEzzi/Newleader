@@ -4,9 +4,6 @@ import '../../../domain/order/entities/order_details.dart';
 import '../../../domain/order/entities/order_item.dart';
 import '../../../domain/order/repositories/order_repository.dart';
 import '../datasources/order_remote_datasource.dart';
-import '../models/order_details_model.dart';
-import '../models/order_items_model.dart';
-import '../models/order_model.dart';
 
 class OrderRepositoryImpl implements OrderRepository {
   final OrderRemoteDataSource remoteDataSource;

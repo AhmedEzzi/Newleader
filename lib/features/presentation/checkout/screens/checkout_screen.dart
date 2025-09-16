@@ -73,15 +73,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           orElse: () => addressProvider.addresses.first,
         );
 
-        if (defaultAddress != null) {
-          setState(() {
-            _selectedAddress = defaultAddress;
-          });
+        setState(() {
+          _selectedAddress = defaultAddress;
+        });
 
-          // Update shipping with the default address
-          await _updateShippingWithSelectedAddress(paymentProvider);
-        }
-      }
+        // Update shipping with the default address
+        await _updateShippingWithSelectedAddress(paymentProvider);
+            }
     }
   }
 

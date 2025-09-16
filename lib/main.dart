@@ -14,6 +14,8 @@ import 'core/config/app_config.dart/app_config.dart';
 import 'core/config/routes.dart/routes.dart';
 import 'core/config/themes.dart/theme.dart';
 import 'core/utils/deep_link_helper.dart';
+import 'core/services/background_status_service.dart';
+import 'core/services/notification_manager.dart';
 import 'core/di/injection_container.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -152,6 +154,24 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         DeepLinkHandler().init();
       });
     });
+
+    // Initialize background status service
+    _initializeBackgroundServices();
+  }
+
+  /// Initialize background services
+  Future<void> _initializeBackgroundServices() async {
+    try {
+      // Initialize notification manager
+      await NotificationManager.initialize();
+
+      // Initialize background status service
+      await BackgroundStatusService.initialize();
+
+      debugPrint('✅ Background services initialized successfully');
+    } catch (e) {
+      debugPrint('❌ Error initializing background services: $e');
+    }
   }
 
   @override

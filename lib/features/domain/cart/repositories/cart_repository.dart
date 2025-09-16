@@ -1,5 +1,4 @@
 import '../entities/cart.dart';
-import '../entities/shipping_update_response.dart';
 
 abstract class CartRepository {
   Future<List<CartItem>> getCartItems();

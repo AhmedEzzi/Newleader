@@ -102,7 +102,7 @@ class AuthProvider extends ChangeNotifier {
       }
     } on UserNotFoundException catch (e) {
       _setRequestMessage(e.message);
-    } on UnauthorizedException catch (e) {
+    } on UnauthorizedException {
       _setRequestMessage('invalid_credentials'.tr(context));
     } catch (e) {
       _setRequestMessage(e.toString());

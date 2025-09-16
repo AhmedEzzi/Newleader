@@ -1,4 +1,3 @@
-import 'dart:convert';
 import '../../../domain/business/entities/business_setting.dart';
 
 class BusinessSettingModel extends BusinessSetting {

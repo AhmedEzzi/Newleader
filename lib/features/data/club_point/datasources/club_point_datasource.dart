@@ -1,5 +1,4 @@
 import '../../../../core/api/api_provider.dart';
-import '../../../../core/utils/constants/app_endpoints.dart';
 import '../models/club_point_model.dart';
 
 abstract class ClubPointDataSource {

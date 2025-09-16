@@ -1,4 +1,3 @@
-import '../entities/cart.dart';
 import '../repositories/cart_repository.dart';
 
 class AddToCartUseCase {
