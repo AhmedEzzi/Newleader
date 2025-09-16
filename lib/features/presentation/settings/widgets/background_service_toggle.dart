@@ -205,4 +205,3 @@ class _BackgroundServiceToggleState extends State<BackgroundServiceToggle> {
     );
   }
 }
-
