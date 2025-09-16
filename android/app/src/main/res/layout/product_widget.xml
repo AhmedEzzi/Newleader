@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_background"
+    android:padding="0dp">
+
+    <!-- Product Image (takes full space) -->
+    <ImageView
+        android:id="@+id/widget_product_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:contentDescription="Product Image" />
+        
+    <!-- Icon in top right corner -->
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="top|end"
+        android:layout_margin="10dp"
+        android:src="@drawable/home_widget_icon"
+        android:contentDescription="Widget Icon" />
+
+    <!-- Text overlay at the bottom -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#B65B4F"
+        android:padding="8dp"
+        android:layout_gravity="bottom">
+
+        <!-- Product Name -->
+        <TextView
+            android:id="@+id/widget_product_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Product"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:maxLines="1" />
+
+        <!-- Price Container (regular and discount prices) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="2dp">
+
+            <!-- Regular Price (shows as crossed out if discounted) -->
+            <TextView
+                android:id="@+id/widget_product_regular_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$0.00"
+                android:textSize="12sp"
+                android:textColor="#FFFFFF"
+                android:visibility="gone" />
+
+            <!-- Current/Discounted Price -->
+            <TextView
+                android:id="@+id/widget_product_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$0.00"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:layout_marginStart="4dp" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

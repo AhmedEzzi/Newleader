@@ -1,0 +1,70 @@
+{
+  "project_info": {
+    "project_number": "103267155365",
+    "project_id": "leader-a1c27",
+    "storage_bucket": "leader-a1c27.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:103267155365:android:f4c397f78a01b39b1afc4c",
+        "android_client_info": {
+          "package_name": "com.leadercompany"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "103267155365-e2qs9k43ao1vkkndj95ck8hd6lk8ut26.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.leadercompany",
+            "certificate_hash": "802a32ac063c891a6e7f942a07140bd574450f58"
+          }
+        },
+        {
+          "client_id": "103267155365-g1t64stve1hafsd8tih0p13tlutu2uvq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.leadercompany",
+            "certificate_hash": "d64d654d6ad677c0012e7c4b9f7164aa6fb1fe01"
+          }
+        },
+        {
+          "client_id": "103267155365-m3k6us7tt2oqrabhpgh9sbpggru77st3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.leadercompany",
+            "certificate_hash": "31bef672ab35495aea224d979e0c495109f55261"
+          }
+        },
+        {
+          "client_id": "103267155365-f2eaftu574vpfrek65nb2ltv3eha01f8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2vhx9FelDEYKgL9Cn17_6BImzpmMnXRk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "103267155365-f2eaftu574vpfrek65nb2ltv3eha01f8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "103267155365-c44i3och8ier6kdkr61r0ahoh51qk4me.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.leadercompany"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
