@@ -13,6 +13,7 @@ import 'package:uuid/uuid.dart';
 import 'core/config/app_config.dart/app_config.dart';
 import 'core/config/routes.dart/routes.dart';
 import 'core/config/themes.dart/theme.dart';
+import 'core/utils/deep_link_helper.dart';
 import 'core/di/injection_container.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -104,7 +105,9 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (_) => sl<HomeProvider>()),
         ChangeNotifierProvider(create: (_) => sl<LayoutProvider>()),
         ChangeNotifierProvider(create: (_) => sl<ProductDetailsProvider>()),
-        ChangeNotifierProvider(create: (_) => sl<LanguageProvider>()..setLocale(locale)),
+        ChangeNotifierProvider(
+          create: (_) => sl<LanguageProvider>()..setLocale(locale),
+        ),
         ChangeNotifierProvider(create: (_) => sl<CategoryProvider>()),
         ChangeNotifierProvider(create: (_) => sl<BrandProvider>()),
         ChangeNotifierProvider(create: (_) => sl<SliderProvider>()),
@@ -135,9 +138,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
-
   late final DeepLinkHandler _dl = DeepLinkHandler();
-
 
   @override
   void initState() {
@@ -163,7 +164,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Consumer<LanguageProvider>(
       builder: (context, languageProvider, child) {
-        debugPrint('Building MyApp with locale: ${languageProvider.locale.languageCode}');
+        debugPrint(
+          'Building MyApp with locale: ${languageProvider.locale.languageCode}',
+        );
 
         return UIHelper.wrapWithStatusBarConfig(
           MaterialApp(
@@ -173,10 +176,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             theme: AppTheme.getTheme(languageProvider.locale.languageCode),
             themeMode: ThemeMode.light,
             locale: languageProvider.locale,
-            supportedLocales: const [
-              Locale('en', 'US'),
-              Locale('ar', 'EG'),
-            ],
+            supportedLocales: const [Locale('en', 'US'), Locale('ar', 'EG')],
             localizationsDelegates: const [
               AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
@@ -188,11 +188,15 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
               for (var supportedLocale in supportedLocales) {
                 if (supportedLocale.languageCode == locale?.languageCode) {
-                  debugPrint('Resolved to supported locale: ${supportedLocale.languageCode}');
+                  debugPrint(
+                    'Resolved to supported locale: ${supportedLocale.languageCode}',
+                  );
                   return supportedLocale;
                 }
               }
-              debugPrint('No matching locale, using default: ${supportedLocales.first.languageCode}');
+              debugPrint(
+                'No matching locale, using default: ${supportedLocales.first.languageCode}',
+              );
               return supportedLocales.first;
             },
             onGenerateRoute: AppRoutes.generateRoute,
@@ -204,7 +208,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   }
 }
 
-
 class DeepLinkHandler {
   final AppLinks _appLinks = AppLinks();
   StreamSubscription<Uri>? _sub;
@@ -213,39 +216,30 @@ class DeepLinkHandler {
     final initialUri = await _appLinks.getInitialLink();
     if (initialUri != null) _handleUri(initialUri);
 
-    _sub = _appLinks.uriLinkStream.listen(_handleUri, onError: (e) {
-      debugPrint('Deeplink error: $e');
-    });
+    _sub = _appLinks.uriLinkStream.listen(
+      _handleUri,
+      onError: (e) {
+        debugPrint('Deeplink error: $e');
+      },
+    );
   }
 
   void dispose() => _sub?.cancel();
 
   void _handleUri(Uri uri) {
-    // App Links
-    if (uri.scheme.startsWith('http')) {
-      if (uri.host == 'admin.leadercompany-eg.com' &&
-          uri.pathSegments.isNotEmpty &&
-          uri.pathSegments.first == 'product') {
-        final slug = uri.pathSegments.length > 1 ? uri.pathSegments[1] : null;
-        if (slug != null) {
-          navigatorKey.currentState?.pushNamed(
-            AppRoutes.productDetailScreen,
-            arguments: slug,
-          );
-        }
-      }
-    }
-    // Custom scheme: leadercompany://product/<slug>
-    else if (uri.scheme == 'leadercompany' &&
-        uri.host == 'product' &&
-        uri.pathSegments.isNotEmpty) {
-      final slug = uri.pathSegments.first;
+    debugPrint('Deep link received: $uri');
+
+    // Use DeepLinkHelper to extract product slug
+    final slug = DeepLinkHelper.extractProductSlugFromUrl(uri.toString());
+
+    if (slug != null) {
+      debugPrint('Navigating to product with slug: $slug');
       navigatorKey.currentState?.pushNamed(
         AppRoutes.productDetailScreen,
-        arguments: slug,
+        arguments: {'slug': slug},
       );
+    } else {
+      debugPrint('Invalid deep link format: $uri');
     }
   }
 }
-
-

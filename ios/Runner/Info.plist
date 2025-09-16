@@ -44,6 +44,21 @@
 					<string>com.leadercompany</string>
 				</array>
 			</dict>
+			<dict>
+				<key>CFBundleTypeRole</key>
+				<string>Editor</string>
+				<key>CFBundleURLName</key>
+				<string>com.leadercompany.applinks</string>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>https</string>
+				</array>
+			</dict>
+		</array>
+		<key>com.apple.developer.associated-domains</key>
+		<array>
+			<string>applinks:admin.leadercompany-eg.com</string>
+			<string>applinks:leadercompany-eg.com</string>
 		</array>
 		<key>CFBundleVersion</key>
 		<string>$(FLUTTER_BUILD_NUMBER)</string>
