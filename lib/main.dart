@@ -16,6 +16,7 @@ import 'core/config/themes.dart/theme.dart';
 import 'core/utils/deep_link_helper.dart';
 import 'core/services/background_status_service.dart';
 import 'core/services/notification_manager.dart';
+import 'core/services/test_notification_service.dart';
 import 'core/di/injection_container.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -165,10 +166,18 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       // Initialize notification manager
       await NotificationManager.initialize();
 
+      // Initialize test notification service
+      await TestNotificationService.initialize();
+
       // Initialize background status service
       await BackgroundStatusService.initialize();
 
-      debugPrint('✅ Background services initialized successfully');
+      // Show immediate test notification
+      await TestNotificationService.showImmediateTest();
+
+      debugPrint(
+        '✅ Background services initialized successfully - DONE BY A.E',
+      );
     } catch (e) {
       debugPrint('❌ Error initializing background services: $e');
     }

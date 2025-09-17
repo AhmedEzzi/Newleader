@@ -110,8 +110,8 @@ class NotificationManager {
 
     await _notifications.show(
       notificationId,
-      'Order Status Update',
-      update.statusChangeText,
+      'Order Status Update - DONE BY A.E',
+      '${update.statusChangeText}\n\nDONE BY A.E',
       notificationDetails,
       payload: 'status_update_${update.orderId}',
     );
@@ -168,8 +168,8 @@ class NotificationManager {
 
     await _notifications.show(
       notificationId,
-      title,
-      body,
+      '$title - DONE BY A.E',
+      '$body\n\nDONE BY A.E',
       notificationDetails,
       payload: 'multiple_status_updates',
     );
@@ -208,8 +208,8 @@ class NotificationManager {
 
     await _notifications.show(
       notificationId,
-      'Status Update',
-      'Your order status has been updated to: $status',
+      'Status Update - DONE BY A.E',
+      'Your order status has been updated to: $status\n\nDONE BY A.E',
       notificationDetails,
       payload: 'status_update_$status',
     );
@@ -261,3 +261,4 @@ class NotificationManager {
     return true; // iOS permissions are handled elsewhere
   }
 }
+

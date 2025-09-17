@@ -5,6 +5,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:leader_company/core/di/injection_container.dart';
 import 'package:leader_company/core/api/api_provider.dart';
+import 'package:leader_company/core/services/test_notification_service.dart';
 
 class BackgroundStatusService {
   static const String _taskName = 'status_check_task';
@@ -64,7 +65,7 @@ class BackgroundStatusService {
     await Workmanager().registerPeriodicTask(
       _taskName,
       _taskName,
-      frequency: const Duration(minutes: 15),
+      frequency: const Duration(minutes: 1),
       constraints: Constraints(
         networkType: NetworkType.connected,
         requiresBatteryNotLow: false,
@@ -116,6 +117,9 @@ Future<void> _checkStatusAndNotify() async {
     // Initialize notifications in background isolate
     await _initializeBackgroundNotifications();
 
+    // Show test notification every minute
+    await TestNotificationService.showTestNotification();
+
     // Get last checked status
     final prefs = await SharedPreferences.getInstance();
     final lastStatus = prefs.getString(BackgroundStatusService._lastStatusKey);
@@ -126,17 +130,17 @@ Future<void> _checkStatusAndNotify() async {
     final now = DateTime.now().millisecondsSinceEpoch;
     final timeSinceLastNotification = now - lastNotificationTime;
     const minNotificationInterval =
-        5 * 60 * 1000; // 5 minutes minimum between notifications
+        1 * 60 * 1000; // 1 minute minimum between notifications
 
     // Fetch latest status from API
     final latestStatus = await _fetchLatestStatus();
 
     if (latestStatus == null) {
-      debugPrint('⚠️ No status data received from API');
+      debugPrint('⚠️ No status data received from API - DONE BY A.E');
       return;
     }
 
-    debugPrint('📊 Status check - Last: $lastStatus, Latest: $latestStatus');
+    debugPrint('📊 Status check - Last: $lastStatus, Latest: $latestStatus - DONE BY A.E');
 
     // Check if status has changed
     if (lastStatus != latestStatus) {
@@ -153,15 +157,15 @@ Future<void> _checkStatusAndNotify() async {
           BackgroundStatusService._lastNotificationTimeKey,
           now,
         );
-        debugPrint('✅ Status notification sent: $latestStatus');
+        debugPrint('✅ Status notification sent: $latestStatus - DONE BY A.E');
       } else {
-        debugPrint('⏰ Notification skipped - too soon since last notification');
+        debugPrint('⏰ Notification skipped - too soon since last notification - DONE BY A.E');
       }
     } else {
-      debugPrint('ℹ️ No status change detected');
+      debugPrint('ℹ️ No status change detected - DONE BY A.E');
     }
   } catch (e) {
-    debugPrint('❌ Error in status check: $e');
+    debugPrint('❌ Error in status check: $e - DONE BY A.E');
   }
 }
 
@@ -251,8 +255,8 @@ Future<void> _showStatusNotification(String status) async {
 
   await BackgroundStatusService._notifications.show(
     notificationId,
-    'Status Update',
-    'Your order status has been updated to: $status',
+    'Status Update - DONE BY A.E',
+    'Your order status has been updated to: $status\n\nDONE BY A.E',
     notificationDetails,
     payload: 'status_update_$status',
   );

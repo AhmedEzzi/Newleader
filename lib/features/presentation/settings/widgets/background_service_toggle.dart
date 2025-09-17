@@ -187,7 +187,7 @@ class _BackgroundServiceToggleState extends State<BackgroundServiceToggle> {
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        'Status updates will be checked every 15 minutes.'.tr(
+                        'Status updates will be checked every 1 minute.'.tr(
                           context,
                         ),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
